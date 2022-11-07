@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Inscription
 {% endblock %}
 
 {% block body %}
@@ -8,7 +8,7 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
-	<h1>Register</h1>
+	<h1>Inscription</h1>
 
 	{{ form_start(registrationForm) }}
 	{{ form_row(registrationForm.email) }}
@@ -21,8 +21,8 @@
 	{{ form_row(registrationForm.cp, {label: "Code Postal"}) }}
 	{{ form_row(registrationForm.ville) }}
 	{{ form_row(registrationForm.telephone) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+	{{ form_row(registrationForm.agreeTerms, {label: "J'accepte les conditions générales du site"}) }}
 
-	<button type="submit" class="btn">Register</button>
+	<button type="submit" class="btn">Enregistrer</button>
 	{{ form_end(registrationForm) }}
 {% endblock %}
