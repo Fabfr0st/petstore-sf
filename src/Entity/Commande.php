@@ -34,9 +34,17 @@ class Commande
     #[ORM\ManyToMany(targetEntity: Article::class)]
     private Collection $article;
 
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $client = null;
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: CommandesHasArticles::class)]
+    private Collection $commandesHasArticles;
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
+        $this->commandesHasArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +132,48 @@ class Commande
     public function removeArticle(Article $article): self
     {
         $this->article->removeElement($article);
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommandesHasArticles>
+     */
+    public function getCommandesHasArticles(): Collection
+    {
+        return $this->commandesHasArticles;
+    }
+
+    public function addCommandesHasArticle(CommandesHasArticles $commandesHasArticle): self
+    {
+        if (!$this->commandesHasArticles->contains($commandesHasArticle)) {
+            $this->commandesHasArticles->add($commandesHasArticle);
+            $commandesHasArticle->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandesHasArticle(CommandesHasArticles $commandesHasArticle): self
+    {
+        if ($this->commandesHasArticles->removeElement($commandesHasArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($commandesHasArticle->getCommande() === $this) {
+                $commandesHasArticle->setCommande(null);
+            }
+        }
 
         return $this;
     }
