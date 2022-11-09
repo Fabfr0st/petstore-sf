@@ -8,15 +8,28 @@
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
 
-	<h1>Inscription</h1>
-
+	<div class="hearder">
+<h2>Inscription</h2>
+      </div>
+	<div class="box">
+	<div class="left-box">
+<div class="titre">
+        <h3>Infomation Générales</h3>
+      </div>
 	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+	
+
 	{{ form_row(registrationForm.nom) }}
 	{{ form_row(registrationForm.prenom) }}
+	{{ form_row(registrationForm.email) }}
+		{{ form_row(registrationForm.plainPassword,{
+            label: 'Password'
+        }) }}
+		</div>
+		<div class="right-box">
+	<div class="titre">
+        <h3>Contact Details</h3>
+      </div>
 	{{ form_row(registrationForm.adresse) }}
 	{{ form_row(registrationForm.cp, {label: "Code Postal"}) }}
 	{{ form_row(registrationForm.ville) }}
@@ -25,4 +38,6 @@
 
 	<button type="submit" class="btn">Enregistrer</button>
 	{{ form_end(registrationForm) }}
+	</div>
+	</div>
 {% endblock %}
