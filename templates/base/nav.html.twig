@@ -13,7 +13,8 @@ session_start();
 
 
 				<li>
-					<a href="/home">
+					
+					<a href="{{ path('app_home') }}">
 						<div class="icon">
 							<i class="fa-solid fa-house fa-2xl"></i>
 						</div>
@@ -24,7 +25,7 @@ session_start();
 				</li>
 
 				<li>
-					<a href="/contact">
+					<a href="{{ path('app_contact') }}">
 						<div class="icon">
 							<i class="fa-solid fa-phone fa-2xl"></i>
 						</div>
@@ -36,7 +37,8 @@ session_start();
 
 
 				<li>
-					<a href="/logout">
+					<a href="{{ path('app_logout') }}">
+					
 						<div class="icon">
 							<i class="fa-solid fa-right-from-bracket fa-2xl"></i>
 						</div>
@@ -48,7 +50,7 @@ session_start();
 
 
 				<li>
-					<a href="/connexion">
+					<a href="{{ path('app_login') }}">
 						<div class="icon">
 							<i class="fa-solid fa-user fa-2xl"></i>
 						</div>
