@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -19,15 +18,10 @@ class CategorieCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-
-        $categorieRepository = $this->entityManager->getRepository(Categorie::class);
-
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('libelle'),
-            AssociationField::new('categorie', "Catégorie mère")/*->setQueryBuilder(
-                $categorieRepository->createQueryBuilder('categorie')->
-            )*/
+            AssociationField::new('categorie_mere', "Catégorie mère")
         ];
     }
     
